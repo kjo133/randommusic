@@ -82,7 +82,7 @@ class RandomMusic extends React.Component {
   }
 
   getAcousticGuitar() {
-    var answer = this.yesNo();
+    var answer = this.alteredYes();
     this.setState({
       acousticGuitar: answer
     });
@@ -106,7 +106,8 @@ class RandomMusic extends React.Component {
     return (
       <div>
         <button onClick={this.onClick}>Get Your Random Music!</button>
-        <h3> Drums : {this.state.drums}</h3>
+        <div className="instrument"><h3> Drums : {this.state.drums}</h3></div>
+        
         <h3>Number of Synths: {this.state.numSynths}</h3>
         <p>{this.state.synthList}</p>
         <h3>Acoustic Guitar: {this.state.acousticGuitar}</h3>
