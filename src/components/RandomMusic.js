@@ -106,10 +106,14 @@ class RandomMusic extends React.Component {
     return (
       <div>
         <button onClick={this.onClick}>Get Your Random Music!</button>
-        <div className="instrument"><h3> Drums : {this.state.drums}</h3></div>
-        
-        <h3>Number of Synths: {this.state.numSynths}</h3>
-        <p>{this.state.synthList}</p>
+        <div className="instrument">
+          <h3> Drums : {this.state.drums}</h3>
+        </div>
+        <div className="instrument">
+          <h3>Number of Synths: {this.state.numSynths}</h3>
+          <p>{this.state.synthList}</p>
+        </div>
+
         <h3>Acoustic Guitar: {this.state.acousticGuitar}</h3>
         <h3>Bass Guitar: {this.state.bass}</h3>
       </div>
