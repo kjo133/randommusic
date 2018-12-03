@@ -4,13 +4,13 @@ import * as data from "../synths.json";
 class RandomMusic extends React.Component {
   constructor(props) {
     super(props);
-    this.getSynth2 = this.getSynth2.bind(this);
 
     this.yesNo = this.yesNo.bind(this);
-    this.alteredYes = this.alteredYes.bind(this);
+    this.favorYes = this.favorYes.bind(this);
+    this.favorNo = this.favorNo.bind(this);
     this.getDrums = this.getDrums.bind(this);
     this.getSynth = this.getSynth.bind(this);
-
+    this.getElectricGuitar = this.getElectricGuitar.bind(this);
     this.onClick = this.onClick.bind(this);
     this.getAcousticGuitar = this.getAcousticGuitar.bind(this);
     this.getBass = this.getBass.bind(this);
@@ -20,16 +20,41 @@ class RandomMusic extends React.Component {
       numSynths: null,
       acousticGuitar: null,
       bass: null,
-      drums: null
+      drums: null,
+      electricGuitar: null
     };
   }
-
-  getSynth2() {
-    var s = [];
-    for (var i = 0; i < data.synths.length; i++) {
-      s.push(data.synths[i]);
-      console.log(s[i]);
+  yesNo() {
+    var answer = "";
+    const num = 1 + Math.floor(Math.random() * 2);
+    if (num === 1) {
+      answer = "yes";
+    } else {
+      answer = "no";
     }
+    return answer;
+  }
+
+  favorYes() {
+    var answer = "";
+    const num = 1 + Math.floor(Math.random() * 10);
+    if (num >= 3) {
+      answer = "yes";
+    } else {
+      answer = "no";
+    }
+
+    return answer;
+  }
+
+  favorNo() {
+    var answer = this.favorNo;
+    if (answer === "yes") {
+      answer = "no";
+    } else {
+      answer = "yes";
+    }
+    return answer;
   }
 
   getSynth() {
@@ -51,29 +76,6 @@ class RandomMusic extends React.Component {
     });
   }
 
-  yesNo() {
-    var answer = "";
-    const num = 1 + Math.floor(Math.random() * 2);
-    if (num === 1) {
-      answer = "yes";
-    } else {
-      answer = "no";
-    }
-    return answer;
-  }
-
-  alteredYes() {
-    var answer = "";
-    const num = 1 + Math.floor(Math.random() * 10);
-    if (num >= 3) {
-      answer = "yes";
-    } else {
-      answer = "no";
-    }
-
-    return answer;
-  }
-
   getDrums() {
     var answer = this.yesNo();
     this.setState({
@@ -82,9 +84,17 @@ class RandomMusic extends React.Component {
   }
 
   getAcousticGuitar() {
-    var answer = this.alteredYes();
+    var answer = this.favorYes();
     this.setState({
       acousticGuitar: answer
+    });
+  }
+
+  getElectricGuitar() {
+    var answer = this.favorNo();
+    console.log("Electric Guitar Answer: " + answer);
+    this.setState({
+      electricGuitar: answer
     });
   }
 
@@ -104,18 +114,27 @@ class RandomMusic extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <button onClick={this.onClick}>Get Your Random Music!</button>
-        <div className="instrument">
-          <h3> Drums : {this.state.drums}</h3>
-        </div>
-        <div className="instrument">
-          <h3>Number of Synths: {this.state.numSynths}</h3>
-          <p>{this.state.synthList}</p>
-        </div>
+        <div className="instrumentContainer">
+          <div>
+            <h3> Drums : {this.state.drums}</h3>
+          </div>
+          <div>
+            <h3>Number of Synths: {this.state.numSynths}</h3>
 
-        <h3>Acoustic Guitar: {this.state.acousticGuitar}</h3>
-        <h3>Bass Guitar: {this.state.bass}</h3>
+            <p>{this.state.synthList}</p>
+          </div>
+          <div>
+            <h3>Acoustic Guitar: {this.state.acousticGuitar}</h3>
+          </div>
+          <div>
+            <h3>Electric Guitar: {this.state.electricGuitar}</h3>
+          </div>
+          <div>
+            <h3>Bass Guitar: {this.state.bass}</h3>
+          </div>
+        </div>
       </div>
     );
   }
