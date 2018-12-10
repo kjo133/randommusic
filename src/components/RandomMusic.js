@@ -48,7 +48,8 @@ class RandomMusic extends React.Component {
   }
 
   favorNo() {
-    var answer = this.favorNo;
+    var answer = this.favorYes;
+    console.log("fav no " + answer);
     if (answer === "yes") {
       answer = "no";
     } else {
@@ -121,8 +122,9 @@ class RandomMusic extends React.Component {
             <h3> Drums : {this.state.drums}</h3>
           </div>
           <div>
-            <h3>Number of Synths: {this.state.numSynths}</h3>
-
+            <h3>
+              Number of Synths: {this.state.numSynths} <br />
+            </h3>
             <p>{this.state.synthList}</p>
           </div>
           <div>
