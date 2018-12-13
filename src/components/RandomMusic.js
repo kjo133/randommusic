@@ -48,7 +48,7 @@ class RandomMusic extends React.Component {
   }
 
   favorNo() {
-    var answer = this.favorYes;
+    var answer = this.favorYes();
     console.log("fav no " + answer);
     if (answer === "yes") {
       answer = "no";
@@ -92,8 +92,7 @@ class RandomMusic extends React.Component {
   }
 
   getElectricGuitar() {
-    var answer = this.favorNo();
-    console.log("Electric Guitar Answer: " + answer);
+    var answer = this.yesNo();
     this.setState({
       electricGuitar: answer
     });
@@ -109,6 +108,7 @@ class RandomMusic extends React.Component {
   onClick() {
     this.getSynth();
     this.getAcousticGuitar();
+    this.getElectricGuitar();
     this.getDrums();
     this.getBass();
   }
